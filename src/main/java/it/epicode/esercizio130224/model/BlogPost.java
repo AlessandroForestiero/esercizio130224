@@ -15,8 +15,17 @@ public class BlogPost {
     private String titolo;
     private String cover="https://picsum.photos/200/300";
     private String contenuto;
-    private LocalDate tempoDiLettura;
+    private int tempoDiLettura;
     @ManyToOne
     @JoinColumn(name = "autore_id")
     private Autore autore;
+
+    public BlogPost(String categoria, String titolo, String contenuto, int tempoDiLettura,Autore autore) {
+        this.categoria = categoria;
+        this.titolo = titolo;
+        this.contenuto = contenuto;
+        this.tempoDiLettura = tempoDiLettura;
+        this.cover="https://picsum.photos/200/300";
+        this.autore=autore;
+    }
 }

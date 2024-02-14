@@ -19,7 +19,13 @@ public class Autore {
     private String avatar;
     @OneToMany(mappedBy = "autore")
     private List<BlogPost> blogPosts;
-    private String getAvatarUrl(){
-        return "https://ui-avatars.com/api/?name=" + nome + "+" + cognome;
+
+    public Autore(String nome, String cognome, String email, LocalDate dataDiNascita) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.email = email;
+        this.dataDiNascita = dataDiNascita;
+        this.blogPosts = blogPosts;
+        this.avatar="https://ui-avatars.com/api/?name=" + nome + "+" + cognome;
     }
 }
