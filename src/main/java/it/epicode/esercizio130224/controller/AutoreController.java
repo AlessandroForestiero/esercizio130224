@@ -11,21 +11,21 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/api")
+
 public class AutoreController {
 
     @Autowired
-    private AutoreService authorService;
+    private AutoreService autoreService;
 
-    @GetMapping("/authors")
+    @GetMapping("/autore")
     public List<Autore> getAllAuthors() {
-        return authorService.cercaTuttiGliAutori();
+        return autoreService.cercaTuttiGliAutori();
     }
 
     @GetMapping("/autore/{id}")
     public ResponseEntity<Autore> getAuthorById(@PathVariable int id) {
         try {
-            Autore author = authorService.cercaAutorePerId(id);
+            Autore author = autoreService.cercaAutorePerId(id);
             return new ResponseEntity<>(author, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -34,23 +34,23 @@ public class AutoreController {
 
     @PostMapping("/autore")
     public ResponseEntity<Autore> createAuthor(@RequestBody Autore author) {
-        Autore createdAuthor = authorService.salvaAutore(author);
+        Autore createdAuthor = autoreService.salvaAutore(author);
         return new ResponseEntity<>(createdAuthor, HttpStatus.CREATED);
     }
 
-    @PutMapping("/authors/{id}")
-    public ResponseEntity<Autore> updateAuthor(@PathVariable int id, @RequestBody Autore autore) {
+    @PutMapping("/autore/{id}")
+    public ResponseEntity<Autore> updateAutore(@PathVariable int id, @RequestBody Autore autore) {
         try {
-            Autore updatedAuthor = authorService.aggiornaAutore(id, autore);
+            Autore updatedAuthor = autoreService.aggiornaAutore(id, autore);
             return new ResponseEntity<>(updatedAuthor, HttpStatus.OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @DeleteMapping("/authors/{id}")
+    @DeleteMapping("/autore/{id}")
     public ResponseEntity<Void> deleteAuthor(@PathVariable int id) {
-        if (authorService.cancellaAutore(id)) {
+        if (autoreService.cancellaAutore(id)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

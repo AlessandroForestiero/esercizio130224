@@ -3,17 +3,18 @@ package it.epicode.esercizio130224.service;
 import it.epicode.esercizio130224.model.Autore;
 import it.epicode.esercizio130224.model.BlogPost;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
+@Service
 public class AutoreService {
     private List<Autore> autori = new ArrayList<>();
 
     @Autowired
-    private BlogPostService blogPostService;
+ //   private BlogPostService blogPostService;
 
     public List<Autore> cercaTuttiGliAutori() {
         return autori;
